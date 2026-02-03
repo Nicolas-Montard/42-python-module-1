@@ -10,7 +10,7 @@ class Plant:
 
     def get_info(self):
         """get info of plant"""
-        print(f"- {self.name} ({self.get_height()}cm, {self.get_age()} days)")
+        print(f"- {self.name}: {self.get_height()}")
 
     def grow(self) -> None:
         """grow the plant"""
@@ -36,7 +36,7 @@ class FloweringPlant(Plant):
     def __init__(self, name: str, height: int, is_blooming: bool, flower_color: str) -> None:
         super().__init__(name, height)
         self.is_blooming: bool = is_blooming
-        self.flower_color = flower_color
+        self.flower_color: str = flower_color
 
     def get_info(self) -> None:
         """get info of flowering plant"""
@@ -73,8 +73,8 @@ class Garden:
 
     def add_plant(self, plant: Plant) -> None:
         self.plants.append(plant)
-        self.nb_plant_added += 1
-        nb_plant_gardens += 1
+        self.nb_plant += 1
+        Garden.nb_plant_gardens += 1
         print(f"Added {plant.name} to {self.owner} garden")
 
     def grow_plants(self) -> None:
@@ -82,41 +82,40 @@ class Garden:
         for plant in self.plants:
             plant.grow()
             self.total_growth += 1
-            total_growth_gardens += 1
+            Garden.total_growth_gardens += 1
             print(f"{plant.name} grew 1cm")
 
     @staticmethod
     def create_plant(plant_name: str) -> Plant:
         if plant_name == "rose":
-            return (FloweringPlant("rose", 25, "red", 1))
+            return (FloweringPlant("rose", 25, True, "red"))
         elif plant_name == "oak":
             return (Plant("oak", 100))
         elif plant_name == "sunflower":
-            return (PrizeFlower("sunflower", 50, "yellow", 1, 10))
+            return (PrizeFlower("sunflower", 50, True, "yellow", 10))
         else:
             return (None)
 
 
 class GardenManager:
-    nb_of_garden: int = 0
-    gardens: list[Garden] = []
-
     def __init__(self) -> None:
-        pass
+        gardens: list[Garden] = []
+        nb_of_garden: int = 0
 
     def add_garden(self, garden: Garden) -> None:
         self.gardens.append(garden)
-        nb_of_garden += 1
+        GardenManager.nb_of_garden += 1
 
     @classmethod
-    def create_garden_network(self, gardens: dict[str, list[str]]) -> None:
+    def create_garden_network(cls, gardens: dict[str, list[str]]) -> None:
+        garden_manager = cls()
         for owner in gardens.keys():
             plants = gardens[owner]
-            self.add_garden(Garden(owner))
-            self.nb_of_garden += 1
+            garden_manager.add_garden(Garden(owner))
+            garden_manager.nb_of_garden += 1
             for plant in plants:
-                self.gardens[-1].add_plant(Garden.create_plant(plant))
-                print(f"Added {plant.capitalize} to {owner.capitalize} garden")
+                garden_manager.gardens[-1].add_plant(Garden.create_plant(plant))
+                print(f"Added {plant.capitalize()} to {owner.capitalize()} garden")
 
     class GardenStats:
         @staticmethod
@@ -131,7 +130,7 @@ class GardenManager:
         
         @staticmethod
         def calculate_garden_score(gardens: list[Garden]):
-            scores : dict[str, int]
+            scores : dict[str, int] = {}
             for garden in gardens:
                 score = 0
                 for plant in garden.plants:
