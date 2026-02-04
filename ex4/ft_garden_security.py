@@ -8,7 +8,7 @@
 #  By: nmontard <nmontard@student.42.fr>         +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/28 12:49:32 by nmontard        #+#    #+#               #
-#  Updated: 2026/01/29 17:13:31 by nmontard        ###   ########.fr        #
+#  Updated: 2026/02/04 15:11:51 by nmontard        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -31,7 +31,7 @@ class SecurePlant:
         if (new_height < 0):
             print(
                 f"Invalid operation attempted: height {new_height}cm \
-                    [REJECTED]")
+[REJECTED]")
             print("Security: Negative height rejected")
         else:
             self.__height = new_height

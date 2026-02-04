@@ -8,11 +8,11 @@
 #  By: nmontard <nmontard@student.42.fr>         +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/01/26 14:29:09 by nmontard        #+#    #+#               #
-#  Updated: 2026/01/29 17:12:19 by nmontard        ###   ########.fr        #
+#  Updated: 2026/02/04 15:08:49 by nmontard        ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
-def main(plant, height, age) -> None:
+def main(plant: str, height: str, age: str) -> None:
     """displays information about a plant in the garden."""
     print("=== Welcome to My Garden ===")
     print(f"Plant: {plant}")

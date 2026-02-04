@@ -18,7 +18,7 @@ class Plant:
         if (new_height < 0):
             print(
                 f"Invalid operation attempted: height {new_height}cm \
-                    [REJECTED]")
+[REJECTED]")
             print("Security: Negative height rejected")
         else:
             self.__height = new_height
@@ -59,7 +59,7 @@ class Flower(Plant):
     def get_info(self):
         """get info of Flower"""
         print(f"{self.name} (Flower): {self.get_height()}cm, \
-              {self.get_age()} days, {self.color} color")
+{self.get_age()} days, {self.color} color")
 
 
 class Tree(Plant):
@@ -73,13 +73,13 @@ class Tree(Plant):
 
     def produce_shade(self) -> None:
         print(f"{self.name} provides \
-              {self.get_height() * self.trunk_diameter // 320} \
-                square meters of shade")
+{self.get_height() * self.trunk_diameter // 320} \
+square meters of shade")
 
     def get_info(self):
         """get info of tree"""
         print(f"{self.name} (Tree): {self.get_height()}cm, \
-              {self.get_age()} days, {self.trunk_diameter}cm diameter")
+{self.get_age()} days, {self.trunk_diameter}cm diameter")
 
 
 class Vegetable(Plant):
@@ -97,7 +97,7 @@ class Vegetable(Plant):
         """get info of vegeable"""
         print(
             f"{self.name} (Vegetable): {self.get_height()}cm, \
-                {self.get_age()} days, {self.harvest_season} harvest")
+{self.get_age()} days, {self.harvest_season} harvest")
 
     def show_nutritional_value(self) -> None:
         """give nutritional value"""
