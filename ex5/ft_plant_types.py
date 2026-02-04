@@ -86,10 +86,12 @@ class Vegetable(Plant):
     """Inherit Plant class and serves as a blueprint for any Vegetable"""
 
     def __init__(self, name: str = "Plant", height: int = 0, age: int = 0,
-                 harvest_season: str = "summer") -> None:
+                 harvest_season: str = "summer",
+                 nutritional_value: bool = True) -> None:
         """initialize Vegetable"""
         super().__init__(name, height, age)
         self.harvest_season: str = harvest_season
+        self.nutritional_value: bool = nutritional_value
 
     def get_info(self) -> None:
         """get info of vegeable"""
@@ -97,9 +99,12 @@ class Vegetable(Plant):
             f"{self.name} (Vegetable): {self.get_height()}cm, \
                 {self.get_age()} days, {self.harvest_season} harvest")
 
-    def nutritional_value(self) -> None:
+    def show_nutritional_value(self) -> None:
         """give nutritional value"""
-        print(f"{self.name} is rich in vitamin C")
+        if (self.nutritional_value is True):
+            print(f"{self.name} is rich in vitamin C")
+        else:
+            print(f"{self.name} is not rich in vitamin C")
 
 
 if __name__ == "__main__":
@@ -107,8 +112,8 @@ if __name__ == "__main__":
     flower2 = Flower("Tulipe", 30, 40, "white")
     tree1 = Tree("Oak", 500, 1825, 50)
     tree2 = Tree("Pine", 300, 1500, 30)
-    vegetable1 = Vegetable("Tomato", 80, 90, "summer")
-    vegetable2 = Vegetable("carrot", 50, 60, "winter")
+    vegetable1 = Vegetable("Tomato", 80, 90, "summer", 1)
+    vegetable2 = Vegetable("carrot", 50, 60, "winter", 1)
     print("=== Garden Plant Types ===\n")
     flower1.get_info()
     flower1.bloom()
@@ -117,4 +122,4 @@ if __name__ == "__main__":
     tree1.produce_shade()
     print("")
     vegetable1.get_info()
-    vegetable1.nutritional_value()
+    vegetable1.show_nutritional_value()
